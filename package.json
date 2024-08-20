@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@playwright/test": "^1.46.1",
+    "dotenv": "^16.4.5",
     "taiko": "latest"
   }
 }

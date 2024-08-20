@@ -1,4 +1,5 @@
 const { expect, chromium } = require('@playwright/test');
+require('dotenv').config();
 
 let page
 
@@ -11,7 +12,7 @@ step("Go to the online store's login page <url>", async (url) => {
 
 step("Login to the user <username>", async (username) => {
     await page.locator('[data-test="username"]').fill(username);
-    await page.locator('[data-test="password"]').fill("secret_sauce");
+    await page.locator('[data-test="password"]').fill(process.env.PASSWORD);
     await page.locator('[data-test="login-button"]').click();
 });
 
