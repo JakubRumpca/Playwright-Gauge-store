@@ -1,0 +1,11 @@
+{
+  "name": "gauge-taiko-template",
+  "description": "Starter template for writing JavaScript tests for Gauge",
+  "scripts": {
+    "test": "gauge run specs"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.46.1",
+    "taiko": "latest"
+  }
+}

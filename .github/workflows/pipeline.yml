@@ -1,0 +1,46 @@
+name: Pipeline - Playwright and Gauge
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Gauge
+        run: |
+          npm install -g @getgauge/cli
+          gauge install js
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Gauge tests with Playwright
+        run: gauge run specs
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: reports/
+          retention-days: 30
+
+      - name: Upload test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: logs/
+          retention-days: 30
