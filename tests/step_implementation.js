@@ -3,7 +3,7 @@ const { expect, chromium } = require('@playwright/test');
 let page
 
 step("Go to the online store's login page <url>", async (url) => {
-    let browser = await chromium.launch({ headless: false, timeout: 20000 });
+    let browser = await chromium.launch();
     const context = await browser.newContext();
     page = await context.newPage();
     await page.goto(url);
